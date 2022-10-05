@@ -22,9 +22,14 @@ nlp = spacy.load("de_core_news_sm")
 
 doc = nlp(text)
 
-sentences = [sentence.text for sentence in doc.sents]
-
 # Spacy segmentation leaves NSU's (non-sentential units) next to each other as a single segment. We want to split them up.
 
+elements = [element for sentence in doc.sents for element in re.compile("").split(sentence.text)]
+
 # pair each sentence with a slot for its translation
-segments = 
+
+segments = [{"de": sentence, "en": ""} for sentence in elements]
+
+json.dump(segments, f)
+
+f.close()
