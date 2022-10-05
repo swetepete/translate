@@ -1,6 +1,7 @@
 import json
 import spacy
 import sys
+import re
 
 # run this script by passing the ebook title
 book_title = sys.argv[1]
