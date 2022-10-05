@@ -24,7 +24,7 @@ doc = nlp(text)
 
 # Spacy segmentation leaves NSU's (non-sentential units) next to each other as a single segment. We want to split them up.
 
-elements = [element for sentence in doc.sents for element in re.compile("").split(sentence.text)]
+elements = [element for sentence in doc.sents for element in re.compile("[^\n\n]+\n[\n]+").split(sentence.text)]
 
 # pair each sentence with a slot for its translation
 
