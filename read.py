@@ -4,7 +4,7 @@ import sys
 
 nlp = spacy.load("de_core_news_sm")
 nlp.max_length = 2000000
-sents = nlp(open(sys.argv[1]).read()).sents
+sentences = nlp(open(sys.argv[1]).read()).sents
 
 
 translator = deepl.Translator(sys.environ["DEEPL_API"])
