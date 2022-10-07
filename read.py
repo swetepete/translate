@@ -1,6 +1,7 @@
 import deepl
 import spacy
 import os
+import sys
 
 nlp = spacy.load("de_core_news_sm")
 nlp.max_length = 2000000
