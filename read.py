@@ -13,7 +13,7 @@ translator = deepl.Translator(os.environ["DEEPL_API"])
 for sentence in sentences:
   print(sentence)
   while x := input():
-      translator.translate_text(sentence, target_lang="EN").text
+      translator.translate_text(sentence, target_lang="EN-US").text
 
 
 
