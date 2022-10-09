@@ -2,6 +2,7 @@ import sys
 import os
 import json
 import deepl
+import textwrap
 
 fn = sys.argv[1]
 
@@ -17,12 +18,14 @@ translator = deepl.Translator(os.environ["DEEPL_API"])
 
 for sentence in sentences[current_loc:]:
   
-  print(sentence + "\n" + ("-" * os.get_terminal_size().columns))
+  term_width = os.get_terminal_size().columns
+  
+  print(textwrap.fill(sentence, term_width) + "\n" + ("-" * term_width) + "\n")
   
   if input() == "exit":
     exit()
   else:
-    print(translator.translate_text(sentence, target_lang="EN-US").text + "\n" + ("-" * os.get_terminal_size().columns))
+    print("\n" + textwrap(translator.translate_text(sentence, target_lang="EN-US").text, term_width) + "\n\n" + ("-" * term_width) + "\n")
     
   if input() == "exit":
     exit()
