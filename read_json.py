@@ -15,7 +15,7 @@ sentences = data["sentences"]
 
 translator = deepl.Translator(os.environ["DEEPL_API"])
 
-for index, sentence in enumerate(sentences[current_loc:]):
+for sentence in sentences[current_loc:]:
   
   input(sentence + "\n" + ("-" * os.get_terminal_size().columns))
   input(translator.translate_text(sentence, target_lang="EN-US").text + "\n" + ("-" * os.get_terminal_size().columns))
