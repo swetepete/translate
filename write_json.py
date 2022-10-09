@@ -9,6 +9,8 @@ fn = sys.argv[1]
 
 sentences = [sentence.text for sentence in nlp(open(fn).read()).sents if not sentence.text.isspace()]
 
+data = {"current_loc": 0, "sentences": sentences}
+
 f = open(fn[:-3] + "json", "w")
 
-json.dump(sentences, f)
+json.dump(data, f)
