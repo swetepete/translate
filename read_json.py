@@ -20,12 +20,12 @@ for sentence in sentences[current_loc:]:
   
   term_width = os.get_terminal_size().columns
   
-  print(textwrap.fill(sentence, term_width) + "\n" + ("-" * term_width) + "\n")
+  print("\n" + textwrap.fill(sentence, term_width) + "\n\n" + ("-" * term_width) + "\n")
   
   if input() == "exit":
     exit()
   else:
-    print("\n" + textwrap(translator.translate_text(sentence, target_lang="EN-US").text, term_width) + "\n\n" + ("-" * term_width) + "\n")
+    print("\n" + textwrap.fill(translator.translate_text(sentence, target_lang="EN-US").text, term_width) + "\n\n" + ("-" * term_width) + "\n")
     
   if input() == "exit":
     exit()
