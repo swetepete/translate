@@ -17,21 +17,21 @@ translator = deepl.Translator(os.environ["DEEPL_API"])
 
 for sentence in sentences[current_loc:]:
   
-  if input() == "exit":
-    exit()
-  else:
-    print(sentence + "\n" + ("-" * os.get_terminal_size().columns))
-    
+  print(sentence + "\n" + ("-" * os.get_terminal_size().columns))
+  
   if input() == "exit":
     exit()
   else:
     print(translator.translate_text(sentence, target_lang="EN-US").text + "\n" + ("-" * os.get_terminal_size().columns))
     
-  current_loc += 1
-  data["current_loc"] = current_loc
-  f.seek(0)
-  json.dump(data, f)
-  f.truncate()
+  if input() == "exit":
+    exit()
+  else:
+    current_loc += 1
+    data["current_loc"] = current_loc
+    f.seek(0)
+    json.dump(data, f)
+    f.truncate()
   
   
   
