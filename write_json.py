@@ -7,7 +7,9 @@ nlp.max_length = 2000000
 
 fn = sys.argv[1]
 
-sentences = [sentence.text for sentence in nlp(open(fn).read()).sents if not sentence.text.isspace()]
+f = open(fn)
+
+sentences = [sentence.text for sentence in nlp(f.read()).sents if not sentence.text.isspace()]
 
 data = {"current_loc": 0, "sentences": sentences}
 
