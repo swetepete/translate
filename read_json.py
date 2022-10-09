@@ -20,12 +20,12 @@ for sentence in sentences[current_loc:]:
   if input() == "exit":
     exit()
   else:
-    input(sentence + "\n" + ("-" * os.get_terminal_size().columns))
+    print(sentence + "\n" + ("-" * os.get_terminal_size().columns))
     
   if input() == "exit":
     exit()
   else:
-    input(translator.translate_text(sentence, target_lang="EN-US").text + "\n" + ("-" * os.get_terminal_size().columns))
+    print(translator.translate_text(sentence, target_lang="EN-US").text + "\n" + ("-" * os.get_terminal_size().columns))
     
   current_loc += 1
   data["current_loc"] = current_loc
