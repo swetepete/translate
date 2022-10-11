@@ -12,7 +12,7 @@ data = json.load(f)
 
 current_loc = data["current_loc"]
 
-sentences = data["sentences"]
+sentences = data["segments"]
 
 translator = deepl.Translator(os.environ["DEEPL_API"])
 
