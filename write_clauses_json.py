@@ -3,32 +3,6 @@ import spacy
 import sys
 import json
 
-nlp = spacy.load("de_core_news_sm")
-nlp.max_length = 2000000
-
-fn = sys.argv[1]
-
-f = open(fn)
-
-text = f.read()
-
-doc = nlp(text)
-
-sentences = [sentence for sentence in doc.sents if not sentence.text.isspace()]
-
-clauses = []
-
-for sentence in sentences:
-  clauses += return_clausal_segmentation(sentence, 6)
-
-data = {"current_loc": 0, "segments": clauses}
-
-f = open(fn[:-3] + "json", "w")
-
-json.dump(data, f)
-
-
-
 
 
 
@@ -165,6 +139,50 @@ def return_clausal_segmentation(sentence, size):
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+nlp = spacy.load("de_core_news_sm")
+nlp.max_length = 2000000
+
+fn = sys.argv[1]
+
+f = open(fn)
+
+text = f.read()
+
+doc = nlp(text)
+
+sentences = [sentence for sentence in doc.sents if not sentence.text.isspace()]
+
+clauses = []
+
+for sentence in sentences:
+  clauses += return_clausal_segmentation(sentence, 6)
+
+data = {"current_loc": 0, "segments": clauses}
+
+f = open(fn[:-3] + "json", "w")
+
+json.dump(data, f)
 
 
 
