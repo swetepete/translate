@@ -3,9 +3,6 @@ import spacy
 import sys
 import json
 
-
-
-
 def flag_terminals(ls, depth):
 
   output = []
@@ -23,16 +20,9 @@ def flag_terminals(ls, depth):
 
   return output
 
-
-
-
-
 def words_are_siblings(word1, word2):
 
   return word1 == word2.head or word2 == word1.head
-
-
-
 
 def lists_are_siblings(ls1, ls2):
 
@@ -45,11 +35,6 @@ def lists_are_siblings(ls1, ls2):
         return True
 
   return False
-
-
-
-
-
 
 def group_by_siblings(ls, size):
 
@@ -76,16 +61,16 @@ def group_by_siblings(ls, size):
       output.append(chunk)
 
   return output
-
           
 def is_list_of_lists(ls):
 
-  for element in list:
+
+
+  for element in ls:
     if not isinstance(element, list):
       return False
 
   return True
-
 
 def pair_wise_conglomerate(chunks, size):
   output = []
@@ -106,14 +91,11 @@ def convert_chunks_to_segmented_strings(chunks, sentence):
     beginning_index = chunk[0].i
     end_index = chunk[-1].i
 
-    segment = sentence[beginning_index:end_index + 1]
+    segment = doc[beginning_index:end_index + 1].text
     segments.append(segment)
 
   return segments
 
-
-# takes a sentence, returns a list of clauses. Therefore you've got to list concatenate or
-# use a list comprehension to flatten the list of lists.
 def return_clausal_segmentation(sentence, size):  
 
   chunks = [word for word in sentence]
@@ -124,7 +106,7 @@ def return_clausal_segmentation(sentence, size):
 
   while not is_list_of_lists(chunks):
 
-    chunks = flag_terminals(sentence, depth)
+    chunks = flag_terminals(chunks, depth)
 
     chunks = group_by_siblings(chunks, size)
 
@@ -135,28 +117,6 @@ def return_clausal_segmentation(sentence, size):
   segments = convert_chunks_to_segmented_strings(chunks, sentence)
 
   return segments
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -176,7 +136,8 @@ sentences = [sentence for sentence in doc.sents if not sentence.text.isspace()]
 clauses = []
 
 for sentence in sentences:
-  clauses += return_clausal_segmentation(sentence, 6)
+  new_clauses = return_clausal_segmentation(sentence, 7)
+  clauses = clauses + new_clauses
 
 data = {"current_loc": 0, "segments": clauses}
 
