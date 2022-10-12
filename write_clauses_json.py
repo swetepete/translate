@@ -136,7 +136,7 @@ sentences = [sentence for sentence in doc.sents if not sentence.text.isspace()]
 clauses = []
 
 for sentence in sentences:
-  new_clauses = return_clausal_segmentation(sentence, 7)
+  new_clauses = return_clausal_segmentation(sentence, 5)
   clauses = clauses + new_clauses
 
 data = {"current_loc": 0, "segments": clauses}
